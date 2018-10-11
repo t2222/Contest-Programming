@@ -1,0 +1,8 @@
+Learn from:
+1. Suffix Array Paper
+2. CP-3 by Steven Halim (Chapter 6 - String Processing) // It's Awsome.
+3. Shanto Vhai Book (Data Structures and Algorithm - Last Chapter)
+
+Practice Problems:
+https://vjudge.net/contest/164907
+Pass: kuetkuetkuet
