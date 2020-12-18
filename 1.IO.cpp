@@ -1,4 +1,13 @@
-#include <bits/stdc++.h>
+#include<iostream>
+#include<string>
+#include<algorithm>
+#include<vector>
+#include<cstdlib>
+#include<cstring>
+#include<stack>
+#include <iomanip>
+#include <cstdio>
+
 
 using namespace std;
 

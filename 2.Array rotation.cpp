@@ -1,4 +1,11 @@
-#include <bits/stdc++.h>
+#include<iostream>
+#include<string>
+#include<algorithm>
+#include<vector>
+#include<cstdlib>
+#include<cstring>
+#include<stack>
+#define MAX 1000
 
 using namespace std;
 

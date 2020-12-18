@@ -96,9 +96,9 @@ bool StackClass::reverse_stack()
 int main() {
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     int tc;
+    
     cin >> tc;
-    int* IntPtr;
-
+    
     StackClass stk; // if i put this into while loop new instance of stk will be created and top will be zero
     while (tc--)
     {
@@ -127,6 +127,8 @@ int main() {
         }
 
     }
-    return 0;
+    
+
+
 }
 
