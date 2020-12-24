@@ -45,7 +45,9 @@ int StackClass::pop()
     }
     else
     {
-        int val = s[top--];
+        int val = s[top];
+        s[top] = -99999;
+        --top;
         return val;
     }
 }
@@ -75,23 +77,6 @@ int StackClass::count_elements()
 {
     return top + 1;
 }
-
-/*
-bool StackClass::reverse_stack()
-{
-    if (top < -1)
-        return false;
-    else
-    {
-        int temp;
-        int end = top+1, beg = 0;
-        for (int i = 0; i < end; i++)
-        {
-
-        }
-    }
-}
-*/
 
 int main() {
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
