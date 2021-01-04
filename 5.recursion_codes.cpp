@@ -114,19 +114,83 @@ long arraySum(int a[], int n)
         return  a[n - 1] + arraySum(a, n - 1);
 }
 
+void reverseString(char* str)
+{
+    if (*str)
+    {
+        reverseString(str + 1);
+        printf("%c", *str);
+    }
+}
+
+int stringLength(char* stringptr)
+{
+    if (*stringptr == '\0')
+        return 0;
+    else
+        return 1 + stringLength(stringptr + 1);
+}
+
+int product(int a, int b)
+{
+    if (a < b)
+        product(b, a);
+    if (b <= 0)
+        return 0;
+    else
+    {
+        return (a + product(a, b - 1));
+    }
+}
+
+int gcd(int a, int b)
+{
+    if (a == 0)
+        return b;
+    else
+        return gcd(b % a, a);
+}
+
+
+void findFactors(int n, int i = 1)
+{
+    try
+    {
+        if (i <= n)
+        {
+            if (i == 0)
+                throw i;
+            if (n % i == 0)
+                cout << i << " ";
+        }
+    }
+    catch (int i)
+    {
+        cout << "divide by " << i << " error\n";
+    }
+    findFactors(n, i + 1);
+}
+
 int main() {
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     int tc;
 
-    cin >> tc;
+    tc = 1;
 
     while (tc--)
     {
         long double n, m;
         //cin >> n;
         //cout << serisSum(n) << endl;
-        int A[] = { 1, 2, 3, 4, 5 };
-        int N = sizeof(A) / sizeof(A[0]);
+        //char c[] = "TOUSIF TASNIMUL AKUMAadafasd ADAF";
+        //reverseString(c);
+        /*
+        string stringInput = "IA  AM AKUMA";
+        char s[1024];
+        strcpy(s, stringInput.c_str());
+        cout << stringLength(s);
+        */
+        findFactors(16);
 
 
     }
@@ -134,4 +198,6 @@ int main() {
 
 
 }
+
+// https://www.w3resource.com/c-programming-exercises/recursion/index.php
 
