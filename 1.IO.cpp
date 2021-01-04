@@ -5,11 +5,18 @@
 #include<cstdlib>
 #include<cstring>
 #include<stack>
-#include <iomanip>
-#include <cstdio>
+#include<utility>
+#include<queue>
+#include<iomanip>
+#include<map>
+#include<set>
 
+#define MAX 1000
 
 using namespace std;
+
+typedef long long int lld;
+typedef long double llf;
 
 int main()
 {
