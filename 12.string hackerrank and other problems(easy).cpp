@@ -97,12 +97,12 @@ int passwordStrength(string s) {
 
     if (strength < 4)
     {
-        return max(size_req, (4 - strength));
+        return max(size_req, (4 - strength)); // see which type of improvement is most needed
     }
 
     else
     {
-        return size_req;
+        return size_req; // if both are equal return any of them
     }
 
 }
