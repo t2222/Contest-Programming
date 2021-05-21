@@ -42,10 +42,11 @@ sorted according to their finish time.
 void ActivitySelectionProblem(Activity listOfActivity[], int n)
 {
 	// sort
-	bool isSwapped = false;
+
 	for (int i = 0; i < n - 1; i++)
 	{
-		for (int j = 0; j < n - i - 1; j++)
+		bool isSwapped = false;
+		for (int j = 0; j < n - i - 1; j++) // Last i elements are already in place
 		{
 			if (listOfActivity[i].finish > listOfActivity[i + 1].finish)
 			{
@@ -86,6 +87,92 @@ void ActivitySelectionProblem(Activity listOfActivity[], int n)
 
 }
 
+struct KnapsackItem
+{
+	float weight;
+	float value;
+	KnapsackItem(float value, float weight)
+	{
+		this->value = value;
+		this->weight = weight;
+	}
+};
+void fractionKnapsack(KnapsackItem knapsackItems[], int n, float tw)
+{
+	// sort
+	for (int i = 0; i < n - 1; i++)
+	{
+		bool isSwapped = false;
+		for (int j = 0; j < n - i - 1; j++)
+		{
+			float ratio1 = knapsackItems[j].weight / knapsackItems[j].value;
+			float ratio2 = knapsackItems[j + 1].weight / knapsackItems[j + 1].value;
+			if (ratio1 > ratio2)
+			{
+				KnapsackItem temp = knapsackItems[j + 1];
+				knapsackItems[j + 1] = knapsackItems[j];
+				knapsackItems[j] = temp;
+				isSwapped = true;
+			}
+		}
+		if (isSwapped == false)
+		{
+			break;
+		}
+	}
+
+	/*for (int i = 0; i < n; i++)
+	{
+		cout << knapsackItems[i].value << " " << knapsackItems[i].weight << endl;
+	}*/
+
+	float currentWeight = 0; // current wweight in knapsack
+	float valSum = 0; // current sum of values in knapsack
+	for (int i = 0; i < n; i++)
+	{
+		if (knapsackItems[i].weight + currentWeight <= tw) // if adding current item don't overflows the tw, add it completely
+		{
+			currentWeight += knapsackItems[i].weight;
+			valSum += knapsackItems[i].value;
+		}
+		else // otherwise add fractional part of it
+		{
+			int remain = tw - currentWeight;
+			if (remain > 0)
+			{
+				valSum += knapsackItems[i].value * (remain / knapsackItems[i].weight);
+				currentWeight += remain;
+				break;
+			}
+		}
+	}
+
+	cout << valSum << " " << currentWeight << endl;
+
+}
+
+void coinChangeGreedy(int amount, int currency[], int n)
+{
+	// sort
+	for (int i = 0; i < n - 1; i++)
+	{
+		bool isSwapped = false;
+		for (int j = 0; j < n - i - 1; j++)
+		{
+			if (currency[j] > currency[j + 1])
+			{
+				swap(currency[j], currency[j + 1]);
+				isSwapped = true;
+			}
+		}
+		if (isSwapped == false)     // if no two elements were swapped by inner loop, then break
+			break;
+	}
+
+
+
+}
+
 int main()
 {
 	/*
@@ -94,4 +181,16 @@ int main()
 	ActivitySelectionProblem(listOfActivity, n);
 	*/
 
+	/*
+	int W = 50; //    Weight of knapsack
+	KnapsackItem arr[] = { { 120, 30 }, { 60, 10 }, { 100, 20 },  { 100, 20 }, {220,55}, {44,21}, {10000,41} };
+	//KnapsackItem arr[] = { { 60, 10 }, { 100, 20 }, { 120, 30 } };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	fractionKnapsack(arr, n, W);
+	*/
+
+	int val = 121;
+	int currency[] = { 1000, 100, 500, 5, 50, 10, 20, 1, 2 };
+	int n = sizeof(currency) / sizeof(int);
+	coinChangeGreedy(val, currency, n);
 }
