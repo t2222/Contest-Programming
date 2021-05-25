@@ -25,8 +25,7 @@ typedef unsigned long long int ulld;
 
 using namespace std;
 
-
-int main()
+void saleByMatch()
 {
 	int n, val;
 	cin >> n;
@@ -34,8 +33,10 @@ int main()
 	int cnt = 0;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> val;
-		a[val]++;
+		cin >> val; // input
+		a[val]++; // increase the position of input by 1
+		// if a[val] == 2, then a pair is formed, so increment cntand reset a[val] to 0 
+		//to start looking for pairs again
 		if (a[val] == 2)
 		{
 			a[val] = 0;
@@ -43,4 +44,9 @@ int main()
 		}
 	}
 	cout << cnt;
+}
+
+int main()
+{
+	saleByMatch();
 }

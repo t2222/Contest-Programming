@@ -25,7 +25,7 @@ typedef unsigned long long int ulld;
 using namespace std;
 
 
-// Complete the camelcase function below.
+// https://www.hackerrank.com/challenges/camelcase/problem
 int camelcase(string s) {
     int wordCount = 0, firstWordOccurance = 0;
     if (s != "")
@@ -52,12 +52,10 @@ int camelcase(string s) {
             }
         }
     }
-
-
     return wordCount;
-
 }
 
+// https://www.hackerrank.com/challenges/strong-password/problem
 int passwordStrength(string s) {
     int size_req = 0;
     if (s.size() < 6)
@@ -106,6 +104,118 @@ int passwordStrength(string s) {
     }
 
 }
+
+
+// https://www.hackerrank.com/challenges/caesar-cipher-1/problem
+char shiftCapital(char c, int shift)
+{
+    if ((int(c) + shift) > 90) //overflow
+    {
+        c = 'A' + (c + shift - 91);
+    }
+    else
+    {
+        c = c + shift;
+    }
+    return c;
+}
+
+char shiftSmall(char c, int shift)
+{
+    if ((int(c) + shift) > 122) //overflow
+    {
+        c = 'a' + (c + shift - 123);
+    }
+    else
+    {
+        c = c + shift;
+    }
+    return c;
+}
+
+void caesarCipherProb()
+{
+    string inp;
+    int shift, n;
+    cin >> n >> inp >> shift;
+    char c;
+    for (int i = 0; i < inp.size(); i++)
+    {
+        /*
+        // works for some case
+        if (inp[i] >= 65 && inp[i] <= 90) // capital
+        {
+            inp[i] = shiftCapital(inp[i],shift);
+        }
+        else if (inp[i] >= 97 && inp[i] <= 122) // small
+        {
+            inp[i] = shiftSmall(inp[i],shift);
+        }
+        */
+
+        if (inp[i] >= 97 && inp[i] <= 122)// small case
+        {
+            int relative_ascii_pos = inp[i] - 'a';
+            int shifted_pos = relative_ascii_pos + shift;
+            int modulus_roundedUp_pos = shifted_pos % 26;
+            char final_shifted_char = modulus_roundedUp_pos + 'a';
+
+            inp[i] = final_shifted_char;
+
+            // this is step by step what needs to be done. it can be written in one line like this
+            // inp[i] = ((inp[i]-'a'+shift) % 26) + 'a';
+        }
+
+        else if (inp[i] >= 65 && inp[i] <= 90)// capital case
+        {
+            int relative_ascii_pos = inp[i] - 'A';
+            int shifted_pos = relative_ascii_pos + shift;
+            int modulus_roundedUp_pos = shifted_pos % 26;
+            char final_shifted_char = modulus_roundedUp_pos + 'A';
+
+            inp[i] = final_shifted_char;
+
+            // this is step by step what needs to be done. it can be written in one line like this
+            // inp[i] = ((inp[i]-'A'+shift) % 26) + 'A';
+        }
+
+
+    }
+
+    cout << inp << endl;
+}
+
+// https://www.hackerrank.com/challenges/mars-exploration/problem
+void marsExploration()
+{
+    string msg = "SOS";
+    string inp;
+    cin >> inp;
+
+    int num_message = inp.size() / msg.size();
+
+    int total_changed_letters = 0;
+    int i = 0;
+    while (i < inp.size())
+    {
+        for (int j = 0; j < msg.size(); j++)
+        {
+            if (msg[j] != inp[i])
+            {
+                total_changed_letters++;
+                i++;
+            }
+            else
+            {
+                i++;
+            }
+        }
+    }
+
+    cout << total_changed_letters << endl;
+
+}
+
 
 char* superReducedString(char* str) {
     int len = strlen(str);
