@@ -169,8 +169,78 @@ void coinChangeGreedy(int amount, int currency[], int n)
 			break;
 	}
 
+	vector<int> ans;
+	// change coin
+	for (int i = n - 1; i >= 0; i--)
+	{
+		while (amount >= currency[i])
+		{
+			amount -= currency[i];
+			ans.push_back(currency[i]);
+		}
+	}
+
+	for (int i = 0; i < ans.size(); i++)
+	{
+		cout << ans[i] << " ";
+	}
+
+}
+
+struct Job
+{
+	char id;
+	int deadline;
+	int profit;
+	Job(char id, int dead, int profit)
+	{
+		this->id = id;
+		this->deadline = dead;
+		this->profit = profit;
+	}
+};
+bool comparator(Job j1, Job j2)
+{
+	return j1.profit > j2.profit;
+}
+/*
+1) Sort all jobs in decreasing order of profit.
+2) Iterate on jobs in decreasing order of profit.For each job , do the following :
+For each job find an empty time slot from deadline to 0. If found empty
+slot put the job in the slot and mark this slot filled.
+*/
+void jobSequencingGreedy(Job joblist[], int n)
+{
+	sort(joblist, joblist + n, comparator); // sort in decreasing order
+	for (int i = 0; i < n; i++)
+	{
+		cout << joblist[i].id << " " << joblist[i].deadline << " " << joblist[i].profit << endl;
+	}
 
 
+	const int SIZE = 20;
+	bool slot[SIZE];
+	int sequenced_jobs[SIZE];
+	memset(slot, false, sizeof(bool) * SIZE);
+
+	for (int i = 0; i < n; i++) // go through the joblist
+	{
+		for (int j = min(n, joblist[i].deadline) - 1; j >= 0; j--) // start putting jobs from the end so that if a high profitted job with low deadline appears, it can be allocated
+		{
+			if (slot[j] == false) // if slot is empty add jobs to slot and sequenced_jobs array and break
+			{
+				slot[j] = true;
+				sequenced_jobs[j] = i;
+				break;
+			}
+		}
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		if (slot[i] == true)
+			cout << joblist[sequenced_jobs[i]].id << " ";
+	}
 }
 
 int main()
@@ -189,8 +259,15 @@ int main()
 	fractionKnapsack(arr, n, W);
 	*/
 
-	int val = 121;
-	int currency[] = { 1000, 100, 500, 5, 50, 10, 20, 1, 2 };
+	/*
+	int val = 93;
+	int currency[] = { 1000, 100, 500, 5, 50, 10, 20, 1, 2};
 	int n = sizeof(currency) / sizeof(int);
-	coinChangeGreedy(val, currency, n);
+	coinChangeGreedy(val,currency,n);
+	*/
+
+	Job arr[] = { {'a', 2, 100}, {'b', 1, 19}, {'c', 2, 27},
+				   {'d', 1, 25}, {'e', 3, 15} };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	jobSequencingGreedy(arr, n);
 }
