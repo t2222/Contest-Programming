@@ -216,6 +216,76 @@ void marsExploration()
 
 }
 
+// https://www.hackerrank.com/challenges/hackerrank-in-a-string/problem
+void hackerrankInString()
+{
+    int tc;
+    cin >> tc;
+
+    string STR = "hackerrank ";
+    while (tc--)
+    {
+        string inp;
+        cin >> inp; // hereiamstackerrank
+        string temp = "";
+        vector<char> characters_list{ 'k', 'n', 'a', 'r', 'r', 'e', 'k', 'c', 'a', 'h' };
+        for (int i = 0; i < inp.size(); i++)
+        {
+            // if char is found in input then pop it from the word list,
+            // it means that we have occured that char at the pos
+            if (characters_list.size() == 0) // char list empty, so all chars are found
+                break;
+            if (inp[i] == characters_list[characters_list.size() - 1])
+            {
+                characters_list.pop_back();
+            }
+        }
+
+        if (characters_list.size() == 0)
+        {
+            cout << "YES" << endl;
+        }
+        else
+        {
+            cout << "NO" << endl;
+        }
+    }
+}
+
+// https://www.hackerrank.com/challenges/pangrams/problem
+void isPangram()
+{
+    bool isCharFound[26] = { false };
+    string inp;
+    getline(cin, inp);
+
+    int n = inp.size();
+
+    for (int i = 0; i < n; i++)
+    {
+        if (isupper(inp[i]))
+        {
+            inp[i] = tolower(inp[i]);
+        }
+        int pos = inp[i];
+        isCharFound[pos - 97] = true;
+    }
+
+    bool flag = true;
+    for (int i = 0; i < 26; i++)
+    {
+        if (!isCharFound[i])
+        {
+            flag = false;
+            break;
+        }
+    }
+    if (!flag)
+        cout << "not pangram\n";
+    else
+        cout << "pangram\n";
+}
+
 
 char* superReducedString(char* str) {
     int len = strlen(str);
