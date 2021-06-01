@@ -3,13 +3,22 @@
 #include<algorithm>
 #include<vector>
 #include<cstdlib>
-#include<cstring>
+#include<cstring> // needed for memsets
+#include<cstdio>
+#include <cmath>
 #include<stack>
-#include<utility>
+#include<utility> // needed for pair
 #include<queue>
-#include<iomanip>
-#include<map>
 #include<set>
+#include<map>
+#include <unordered_map>
+#include<set>
+#include<numeric> // used accumulate
+#include <bitset>
+#include <typeinfo>
+#include <sstream>
+#include <limits>
+
 
 #define MAX 1000
 
@@ -17,6 +26,9 @@ using namespace std;
 
 typedef long long int lld;
 typedef long double llf;
+typedef unsigned long long int ulld;
+
+using namespace std;
 
 int main()
 {

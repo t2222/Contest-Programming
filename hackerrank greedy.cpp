@@ -167,6 +167,35 @@ void closest_Numbers()
     }
 }
 
+// https://www.hackerrank.com/challenges/mark-and-toys/problem?h_l=interview&playlist_slugs%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D=sorting
+void maximumToys() {
+    vector<ulld> prices;
+    ulld k, n;
+    cin >> n >> k;
+    while (n--)
+    {
+        ulld val;
+        cin >> val;
+        prices.push_back(val);
+    }
+    sort(prices.begin(), prices.end());
+    int count = 0, sum = 0;
+    for (int i = 0; i < prices.size(); i++)
+    {
+        if (sum > k)
+            break;
+        else
+        {
+            sum += prices[i];
+            count++;
+        }
+    }
+
+    cout << count - 1 << endl;
+
+    return;
+}
+
 int main()
 {
     closest_Numbers();
