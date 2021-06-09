@@ -140,6 +140,50 @@ void maximumToys() {
     return;
 }
 
+// https://www.hackerrank.com/challenges/picking-numbers/problem
+void picking_numbers()
+{
+    int n;
+    cin >> n;
+    int arr[100];
+    memset(arr, 0, sizeof(int) * 100);
+    for (int i = 0; i < n; i++)
+    {
+        int val;
+        cin >> val;
+        arr[val]++; // store frequency
+    }
+
+    int max_freq = -1; // find max of consecutive 2 elements
+    for (int i = 0; i < n - 1; i++)
+    {
+        int sum = arr[i] + arr[i + 1];
+        if (max_freq < sum)
+            max_freq = sum;
+    }
+
+    cout << max_freq << endl;
+}
+
+
+//https://www.hackerrank.com/challenges/cats-and-a-mouse/problem
+void catAndMouse()
+{
+    int tc, catA, catB, mouseC;
+    cin >> tc;
+    while (tc--)
+    {
+        cin >> catA >> catB >> mouseC;
+        int diffA = abs(catA - mouseC);
+        int diffB = abs(catB - mouseC);
+        if (diffA == diffB)
+            cout << "Mouse C\n";
+        else if (diffA > diffB)
+            cout << "Cat B\n";
+        else
+            cout << "Cat A\n";
+    }
+}
 
 int main()
 {
